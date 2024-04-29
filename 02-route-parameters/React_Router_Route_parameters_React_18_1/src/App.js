@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/user/new" element={<div>Unable to create a new user</div>} />
           <Route path="/user/:userId" element={<UserProfile />} />
-          <Route path="/" element={<div>404 Not Found</div>}  />
+          <Route path="*" element={<h1>404 Not Found</h1>}  />
         </Routes>
        {/* Setup routes with route paramaters as needed */}
     </div>
