@@ -50,7 +50,7 @@ describe("App", () => {
       },
     };
 
-    const mockFetch = jest
+    const mockFetch = jest 
       .spyOn(window, "fetch")
       .mockImplementation(() =>
         Promise.resolve({ json: () => Promise.resolve(mockUser) })

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function UserProfile() {
   const [user, setUser] = useState({});
@@ -33,17 +33,26 @@ function UserProfile() {
 
   const deleteHandler = () => {
     // This will be successful but will not actually delete the user.
-    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, 
-        { method: "DELETE" } // The delete method tells the API to delete the user.
-    )
-      .then((response) => response.json())
-      .then((data)=> console.log("deleteHandler is not fully implemented"));
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
+      method: "DELETE", // The delete method tells the API to delete the user.
+    })
+      .then((response) => {
+        if (response) {
+          // If deletion is successful, navigate back to the homepage
+          navigate("/");
+        } else {
+          console.error("Error deleting user");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting user:", error);
+      });
   };
 
   if (user.id) {
     return (
       <div>
-        <button type="button" onClick={deleteHandler}>
+        <button type="button" onClick={() => deleteHandler()}>
           Delete
         </button>
         {rows}
