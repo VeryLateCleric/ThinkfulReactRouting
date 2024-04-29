@@ -1,6 +1,7 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Routes, Route } from "react-router-dom";
 import users from "./data.json";
+import UserPost from "./UserPost"
 
 
 export const UserPosts = () => {
@@ -22,6 +23,9 @@ export const UserPosts = () => {
     <div>
       <ul>{postLinks}</ul>
       <div>
+        <Routes>
+          <Route path="/users/:userId/posts/:postId" element={<UserPost />} />
+        </Routes>
         {/* TODO: Display Nested Routes" */}
       </div>
     </div>
