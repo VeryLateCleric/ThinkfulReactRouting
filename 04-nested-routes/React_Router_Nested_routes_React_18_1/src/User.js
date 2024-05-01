@@ -25,12 +25,12 @@ export const User = () => {
           <h2>{user.name}</h2>
           <ul>
             <li>
-              <NavLink to={`#`} data-testid="user-profile">
+              <NavLink to={`/users/${userId}/profile`} data-testid="user-profile">
                 Profile
               </NavLink>
             </li>
             <li>
-              <NavLink to={`#`} data-testid="user-posts">
+              <NavLink to={`/users/${userId}/posts`} data-testid="user-posts">
                 Posts
               </NavLink>
             </li>
