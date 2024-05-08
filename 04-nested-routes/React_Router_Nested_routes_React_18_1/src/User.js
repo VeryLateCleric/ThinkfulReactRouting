@@ -1,8 +1,6 @@
 import React from "react";
-import { Link, NavLink, useParams, Routes, Route, useResolvedPath, Outlet } from "react-router-dom";
+import { Link, NavLink, useParams, useResolvedPath, Outlet } from "react-router-dom";
 import users from "./data.json";
-import UserPosts from "./UserPosts";
-import UserProfile from "./UserProfile";
 
 export const User = () => {
   const { userId } = useParams();
@@ -31,10 +29,8 @@ export const User = () => {
               </NavLink>
             </li>
           </ul>
-          {/* Todo: Instead of displaying the individual components, you want to up date this to display the nested routes*/}
           <Outlet user={user} posts={user.posts}/>
-          
-          {/* <UserProfile user={user} /> */}
+          {/* Outlet allows us to nest the Routes as above to easily display posts */}
         </div>
       </section>
     );
@@ -42,9 +38,4 @@ export const User = () => {
   return <p>User not found</p>;
 };
 
-          // <Routes> from line 34, delete later
-          //   <Route path={`${pathname}/profile`} element={<UserProfile />} />
-          //   <Route path={`${pathname}/posts`} element={<UserPosts />} />
-          // </Routes>
-          
 export default User;

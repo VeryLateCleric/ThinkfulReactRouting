@@ -6,7 +6,6 @@ import UserPosts from "./UserPosts";
 import UserProfile from "./UserProfile";
 import Users from "./Users";
 
-
 function RootRoutes({user, posts}) {
   return (
     <Routes>
@@ -20,19 +19,5 @@ function RootRoutes({user, posts}) {
     </Routes>
   )
 }
-
-// function RootRoutes(user, posts) {
-//   return (
-//     <Routes>
-//       <Route path="/*" element={<Users />} />
-//       <Route path="/users/:userId" element={<Users />}>
-//         <Route path="" element={<UserProfile user={user} />} />
-//         <Route path="posts" element={<UserPosts posts={posts}/>} >
-//         <Route path=":postId" element={<UserPost />}/>
-//       </Route>
-//       </Route>
-//     </Routes>
-//   );
-// }
 
 export default RootRoutes;
