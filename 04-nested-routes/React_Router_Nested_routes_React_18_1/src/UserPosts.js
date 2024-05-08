@@ -1,8 +1,7 @@
 import React from "react";
-import { Link, useParams, Routes, Route } from "react-router-dom";
+import { Link, useParams, Outlet, Routes, Route } from "react-router-dom";
 import users from "./data.json";
-import UserPost from "./UserPost"
-
+import UserPost from "./UserPost";
 
 export const UserPosts = () => {
   const { userId } = useParams();
@@ -13,22 +12,26 @@ export const UserPosts = () => {
 
   const postLinks = user.posts.map((post) => (
     <li key={post.id}>
-      <Link to={`/users/${userId}/posts/${post.id}`} data-testid={`user-post-${post.id}`}>
+      <Link
+        to={`/users/${userId}/posts/${post.id}`}
+        data-testid={`user-post-${post.id}`}
+      >
         {post.title}
       </Link>
     </li>
   ));
 
   return (
-    <div>
-      <ul>{postLinks}</ul>
+    <section>
       <div>
-        <Routes>
-          <Route path="/users/:userId/posts/:postId" element={<UserPost />} />
-        </Routes>
+        <h1>This is a test</h1>
+        <h2>User {user.name} Posts</h2>
+        <ul>{postLinks}</ul>
         {/* TODO: Display Nested Routes" */}
+        
+        <Outlet />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,19 +1,38 @@
-import React from 'react'
+import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Users from "./Users";
 import User from "./User";
-import UserPosts from "./UserPosts"
 import UserPost from "./UserPost";
+import UserPosts from "./UserPosts";
+import UserProfile from "./UserProfile";
+import Users from "./Users";
 
-function RootRoutes() {
+
+function RootRoutes({user, posts}) {
   return (
     <Routes>
-    <Route path="/" element={<Users />} />
-    <Route path="/users/:userId/*" element={<User />} />
-      <Route path="posts" element={<UserPosts />} />
-      <Route path="posts/:postId" element={<UserPost />} />
+    <Route path="/*" element={<Users />} />
+    <Route path="/users/:userId" element={<User />} >
+      <Route path="" element={<UserProfile user={user}/>} />
+      <Route path="posts" element={<UserPosts posts={posts}/>}>
+        <Route path=":postId" element={<UserPost />} />
+      </Route>
+    </Route>
     </Routes>
   )
 }
 
-export default RootRoutes
+// function RootRoutes(user, posts) {
+//   return (
+//     <Routes>
+//       <Route path="/*" element={<Users />} />
+//       <Route path="/users/:userId" element={<Users />}>
+//         <Route path="" element={<UserProfile user={user} />} />
+//         <Route path="posts" element={<UserPosts posts={posts}/>} >
+//         <Route path=":postId" element={<UserPost />}/>
+//       </Route>
+//       </Route>
+//     </Routes>
+//   );
+// }
+
+export default RootRoutes;

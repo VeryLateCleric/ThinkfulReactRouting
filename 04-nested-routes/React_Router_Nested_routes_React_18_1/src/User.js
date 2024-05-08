@@ -1,22 +1,18 @@
 import React from "react";
-import {
-  Link,
-  NavLink,
-  useParams,
-} from "react-router-dom";
+import { Link, NavLink, useParams, Routes, Route, useResolvedPath, Outlet } from "react-router-dom";
 import users from "./data.json";
 import UserPosts from "./UserPosts";
 import UserProfile from "./UserProfile";
 
 export const User = () => {
   const { userId } = useParams();
-
+  const { pathname } = useResolvedPath("");
   if (!userId) {
     throw new Error("No URL parameter for userId");
   }
 
   const user = users.find((user) => `${user.id}` === userId);
-
+  console.log(pathname);
   if (user) {
     return (
       <section>
@@ -25,20 +21,20 @@ export const User = () => {
           <h2>{user.name}</h2>
           <ul>
             <li>
-              <NavLink to={`/users/${userId}/profile`} data-testid="user-profile">
+              <NavLink to={`/users/${userId}`} data-testid="user-profile">
                 Profile
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/users/${userId}/posts`} data-testid="user-posts">
+              <NavLink to={`/posts`} data-testid="user-posts">
                 Posts
               </NavLink>
             </li>
           </ul>
-           {/* Todo: Instead of displaying the individual components, you want to up date this to display the nested routes*/}
-          <UserProfile user={user} />
-          <UserPosts posts={user.posts} />
-         
+          {/* Todo: Instead of displaying the individual components, you want to up date this to display the nested routes*/}
+          <Outlet user={user} posts={user.posts}/>
+          
+          {/* <UserProfile user={user} /> */}
         </div>
       </section>
     );
@@ -46,4 +42,9 @@ export const User = () => {
   return <p>User not found</p>;
 };
 
+          // <Routes> from line 34, delete later
+          //   <Route path={`${pathname}/profile`} element={<UserProfile />} />
+          //   <Route path={`${pathname}/posts`} element={<UserPosts />} />
+          // </Routes>
+          
 export default User;
